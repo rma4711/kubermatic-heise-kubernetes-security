@@ -1,18 +1,5 @@
 # Encryption at Rest
 
-## Communication with etcd
-
-```bash
-# verify etcdctl is installed
-etcdctl version
-
-# verify etcd configuration
-env | grep ETCD
-
-# note that most of those values are taken from the etcd configuration
-cat /etc/kubernetes/manifests/etcd.yaml
-```
-
 ## Get a secret from etcd
 
 ```bash
