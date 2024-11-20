@@ -83,7 +83,7 @@ runcmd:
   - cp -i /etc/kubernetes/admin.conf /root/.kube/config
  
   - echo "================================================= CloudInit Phase Clone Git Repo"
-  - git clone https://github.com/stroebitzer/heise-security-training /root/tmp/training
+  - git clone https://github.com/stroebitzer/kubermatic-heise-kubernetes-security /root/tmp/training
   - cp -r /root/tmp/training/* /root
 
   - echo "================================================= CloudInit Phase Run Training Script"

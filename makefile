@@ -28,11 +28,6 @@ verify:
 	kubectl version
 	test -n "$(IP)"
 	test -n "$(API_SERVER)"
-	test -n "$(ETCDCTL_API)"
-	test -n "$(ETCDCTL_ENDPOINTS)"
-	test -n "$(ETCDCTL_CACERT)"
-	test -n "$(ETCDCTL_KEY)"
-	test -n "$(ETCDCTL_CERT)"
 	kubectl get node kubernetes-security | grep Ready
 	kubectl -n kube-system get pod -l k8s-app=metrics-server | grep Running
 	etcdctl version

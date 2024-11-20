@@ -38,3 +38,7 @@ echo "export ETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt" >> ~/.trainingrc
 echo "export ETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key" >> ~/.trainingrc
 echo "export ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt" >> ~/.trainingrc
 ```
+
+## Backups
+
+
