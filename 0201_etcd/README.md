@@ -36,16 +36,23 @@ ETCDCTL_API=3 etcdctl \
 echo "export ETCDCTL_API=3" >> ~/.trainingrc
 echo "export ETCDCTL_ENDPOINTS=https://127.0.0.1:2379" >> ~/.trainingrc
 echo "export ETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt" >> ~/.trainingrc
-echo "export ETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key" >> ~/.trainingrc
-echo "export ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt" >> ~/.trainingrc
+echo "export ETCDCTL_KEY=/etc/kubernetes/pki/apiserver-etcd-client.key" >> ~/.trainingrc
+echo "export ETCDCTL_CERT=/etc/kubernetes/pki/apiserver-etcd-client.crt" >> ~/.trainingrc
+cat ~/.trainingrc
 source ~/.trainingrc
 env | grep ETCD
 
 # try communication again
 etcdctl member list
+```
 
-# get a cm from etcd
+## Get a value via etcdctl
+
+```bash
+# write a value
 kubectl create cm my-cm --from-literal foo=bar
+
+#get the value
 etcdctl get /registry/configmaps/default/my-cm
 ```
 
@@ -63,7 +70,7 @@ kubectl run my-nginx --image nginx
 kubectl get pods
 ```
 
-### Restore
+## Restore
 
 ```bash
 # move all static manifests

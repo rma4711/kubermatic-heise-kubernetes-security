@@ -14,10 +14,10 @@ etcdctl get /registry/secrets/default/my-secret
 
 ```bash
 # inspect the encryption config
-cat 06_encryption_at_rest/encryption-config.yaml
+cat 0202_encryption_at_rest/encryption-config.yaml
 
 # copy the encryption config file into the folder `/root/apiserver`
-cp 06_encryption_at_rest/encryption-config.yaml /root/apiserver
+cp 0202_encryption_at_rest/encryption-config.yaml /root/apiserver
 ```
 
 ### Engage the Encryption Config File in the API Server

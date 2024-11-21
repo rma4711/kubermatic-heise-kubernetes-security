@@ -29,15 +29,6 @@ verify:
 	test -n "$(API_SERVER)"
 	kubectl get node kubernetes-security | grep Ready
 	kubectl -n kube-system get pod -l k8s-app=metrics-server | grep Running
-	etcdctl version
-# helm version
-# kubesec version
-#	trivy --version
-#	helm status -n kyverno kyverno
-#	systemctl is-active apparmor
-#	runsc --version # gvisor
-#	falco --version
-	# TODO add a kubectl check => it takes very long that it is happy ~ 11 minutes
 	echo "Training Environment successfully verified"
 
 .PHONY: teardown

@@ -44,9 +44,23 @@ kubectl exec -it my-suboptimal-pod -- cat /secret/password
 
 ```bash
 # check the temp file systems on host level
-df | grep tmpfs
+df | grep tmpfs | grep password
 
 # printout the sensitive data in plain text
 # eg cat /var/lib/kubelet/pods/c61079ab-eed7-4f79-b87b-b01c62e54d70/volumes/kubernetes.io~secret/secret-data/password
 cat /var/lib/kubelet/pods/<POD-ID>/volumes/kubernetes.io~secret/secret-data/password
+```
+
+## Secrets via ServiceAccount
+
+```bash
+# store the token into an env variable
+TOKEN=$(kubectl exec -it my-suboptimal-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+
+# store the CA into a file
+kubectl exec -it my-suboptimal-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt > ca.crt
+
+# get infos about secret
+curl -s $API_SERVER/api/v1/namespaces/default/secrets/my-secret --header "Authorization: Bearer $TOKEN" --cacert ca.crt | jq
+echo <BASE64-ENCODED-SECRET-DATA> | base64 -d
 ```
