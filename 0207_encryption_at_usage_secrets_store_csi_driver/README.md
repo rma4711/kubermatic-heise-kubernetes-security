@@ -1,3 +1,0 @@
-# Encryption at Usage
-
-<!-- TODO -->
