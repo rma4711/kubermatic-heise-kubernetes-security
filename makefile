@@ -9,7 +9,7 @@ setup:
 		--machine-type=n2-standard-4 \
 		--image-family=ubuntu-2204-lts \
 		--image-project=ubuntu-os-cloud \
-		--boot-disk-size=250GB
+		--boot-disk-size=250GB \
 		--metadata-from-file user-data=cloudinit.yaml
 
 .PHONY: debug-installation
