@@ -3,6 +3,10 @@
 ## Setup Training Environment
 
 ```bash
+
+# git clone
+git clone https://github.com/stroebitzer/kubermatic-heise-kubernetes-security.git
+
 # [executed localy]
 gcloud init
 

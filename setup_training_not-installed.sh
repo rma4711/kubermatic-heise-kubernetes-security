@@ -2,18 +2,6 @@
 
 echo "================================================= Init Training Script"
 
-echo "================================================= Init Training Script - Install KubeSec"
-wget https://github.com/controlplaneio/kubesec/releases/download/v2.11.4/kubesec_linux_amd64.tar.gz
-tar -xvf kubesec_linux_amd64.tar.gz
-mv kubesec /usr/local/bin/
-
-echo "================================================= Init Training Script - Install Trivy"
-DEBIAN_FRONTEND=noninteractive apt-get install wget apt-transport-https gnupg lsb-release --yes
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | apt-key add -
-echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | tee -a /etc/apt/sources.list.d/trivy.list
-apt-get update
-DEBIAN_FRONTEND=noninteractive apt-get install trivy --yes
-
 echo "================================================= Init Training Script - Install Kyverno"
 helm repo add kyverno https://kyverno.github.io/kyverno/
 helm repo update
