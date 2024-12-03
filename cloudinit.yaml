@@ -10,6 +10,7 @@ packages:
   - wget
   - gnupg
   - lsb-release
+  - net-tools
 
 write_files:
 

@@ -3,14 +3,6 @@
 ## Blocked Ports
 
 ```bash
-# install "something"
-wget -O openlitespeed.sh https://repo.litespeed.sh
-bash openlitespeed.sh
-apt install openlitespeed -y
-
-# install net-tools
-apt install net-tools
-
 # get process blocking the port
 netstat -tulpan | grep 8088
 ps aux | grep -i openlite
