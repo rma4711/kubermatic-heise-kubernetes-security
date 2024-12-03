@@ -30,6 +30,7 @@ verify:
 	test -n "$(API_SERVER)"
 	kubectl get node kubernetes-security | grep Ready
 	kubectl -n kube-system get pod -l k8s-app=metrics-server | grep Running
+# TODO check lshttpd
 	echo "Training Environment successfully verified"
 
 .PHONY: teardown
