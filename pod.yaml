@@ -7,6 +7,10 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 0
   # automountServiceAccountToken: false
+  # securityContext: # <= uncomment this line on k8s > v1.31
+  #   appArmorProfile: # <= uncomment this line on k8s > v1.31
+  #     type: Localhost # <= uncomment this line on k8s > v1.31
+  #     localhostProfile: my-apparmor-profile # <= uncomment this line on k8s > v1.31
   containers:
     - name: my-ubuntu
       image: ubuntu

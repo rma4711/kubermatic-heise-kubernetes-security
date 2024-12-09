@@ -18,7 +18,7 @@ debug-installation:
 
 .PHONY: connect
 connect:
-	gcloud compute ssh root@kubernetes-security
+	gcloud compute ssh root@kubernetes-security --zone=europe-west3-a
 
 .PHONY: verify
 verify:

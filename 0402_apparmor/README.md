@@ -1,8 +1,13 @@
 # Host Level Security with AppArmor
 
+## Install
+
 ## Verify installation
 
 ```bash
+# install
+apt-get install apparmor-utils --yes
+
 # check installation
 systemctl status apparmor
 
@@ -29,10 +34,10 @@ kubectl exec -it my-suboptimal-pod -- ls -alh /tmp
 
 ```bash
 # inspect the apparmor profile
-cat 11_apparmor/my-apparmor-profile
+cat 0402_apparmor/my-apparmor-profile
 
 # copy the profile into the apparmor default profiles directory
-cp 11_apparmor/my-apparmor-profile /etc/apparmor.d/
+cp 0402_apparmor/my-apparmor-profile /etc/apparmor.d/
 
 # restart apparmor
 systemctl restart apparmor
@@ -46,10 +51,17 @@ aa-status | grep my-apparmor-profile
 Enable the apparmor annotation in the file `pod.yaml`
 
 ```yaml
+
+---
 metadata:
   name: my-suboptimal-pod
-  annotations: # <= uncomment this line
-    container.apparmor.security.beta.kubernetes.io/my-ubuntu: localhost/my-apparmor-profile # <= uncomment this line
+  # annotations:
+  #   container.apparmor.security.beta.kubernetes.io/my-ubuntu: localhost/my-apparmor-profile
+spec:
+  securityContext: # <= uncomment this line on k8s > v1.31
+    appArmorProfile: # <= uncomment this line on k8s > v1.31
+      type: Localhost # <= uncomment this line on k8s > v1.31
+      localhostProfile: my-apparmor-profile # <= uncomment this line on k8s > v1.31
 ```
 
 ```bash
@@ -58,4 +70,11 @@ kubectl apply -f pod.yaml --force
 
 # try to write the file again - you should get an error
 kubectl exec my-suboptimal-pod -- touch /tmp/some.file
+```
+
+## Teardown
+
+```bash
+# uncomment apparmor profile in pod
+kubectl apply -f pod.yaml
 ```
