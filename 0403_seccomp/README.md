@@ -17,14 +17,14 @@ systemctl status kubelet
 ```bash
 cat 0403_seccomp/my-profile.json
 
-mkdir /var/lib/kubelet/seccomp/profiles
+mkdir -p /var/lib/kubelet/seccomp/profiles
 cp 0403_seccomp/my-profile.json /var/lib/kubelet/seccomp/profiles/
 ```
 
 ## Verify Pod is allowed to write files
 
 ```bash
-kubectl exec my-suboptimal-pod -- touch /tmp/some.file
+kubectl exec my-suboptimal-pod -- touch /tmp/some.file.again
 kubectl exec -it my-suboptimal-pod -- ls -alh /tmp
 ```
 
@@ -48,8 +48,15 @@ kubectl apply -f pod.yaml --force
 ## Verify
 
 ```bash
-kubectl exec -it my-suboptimal-pod -- touch some.file
+crictl ps | grep my-sub
+crictl inspect <CONTAINER_ID> | grep -C5 seccomp
+
+kubectl exec -it my-suboptimal-pod -- touch some.file.again
 # => error message
+
+
+#  TODO does not work
+
 ```
 
 ## Teardown

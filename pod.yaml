@@ -7,7 +7,10 @@ metadata:
 spec:
   terminationGracePeriodSeconds: 0
   # automountServiceAccountToken: false
-  # securityContext: # <= uncomment this line on k8s > v1.31
+  # securityContext: 
+  #   seccompProfile: # <= uncomment this line
+  #     type: Localhost # <= uncomment this line
+  #     localhostProfile: profiles/my-profile.json # <= uncomment this line
   #   appArmorProfile: # <= uncomment this line on k8s > v1.31
   #     type: Localhost # <= uncomment this line on k8s > v1.31
   #     localhostProfile: my-apparmor-profile # <= uncomment this line on k8s > v1.31
