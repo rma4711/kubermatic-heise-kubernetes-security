@@ -9,14 +9,10 @@ In this lab you will setup an MLA stack.
 helm repo add trivy-operator https://aquasecurity.github.io/helm-charts/
 helm repo update
 
-
 helm --namespace trivy --create-namespace --atomic --debug \
   upgrade --install \
   trivy-operator trivy-operator/trivy-operator --version 0.25.0 \
   --values trivy-operator-values.yaml
-
-
-trivy_image_vulnerabilities{resource_name="my-suboptimal-pod"}  
 
 # helm --namespace trivy --create-namespace --atomic --debug \
 #   upgrade --install \
@@ -88,6 +84,11 @@ kubectl --namespace mla get svc
 make get-external-ip # in different cloud shell
 # visit prometheus => http://EXTERNAL_IP:30090
 # visit alertmanager => http://EXTERNAL_IP:30903
+
+
+# PromQL
+trivy_image_vulnerabilities{resource_name="my-suboptimal-pod"}  
+
 ```
 
 <!-- TODO -->

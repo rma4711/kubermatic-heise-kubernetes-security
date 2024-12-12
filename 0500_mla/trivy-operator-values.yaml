@@ -1,8 +1,9 @@
 serviceMonitor:
   enabled: true
-  labels: { release":"prometheus" }
+  # labels: { release":"prometheus" }
 trivy:
   ignoreUnfixed: true
+targetNamespaces: "default"
 
     # --set service.type=NodePort \
     # --set service.headless=false \
