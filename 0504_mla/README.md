@@ -1,6 +1,6 @@
 # MLA
 
-In this lab you will setup an MLA stack.
+In this lab you will setup an MLA stack for security.
 
 ## trivy
 
