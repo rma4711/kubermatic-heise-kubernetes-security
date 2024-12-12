@@ -33,6 +33,11 @@ verify:
 # TODO check lshttpd
 	echo "Training Environment successfully verified"
 
+.PHONY: get-external-ip
+get-external-ip:
+	gcloud compute instances describe kubernetes-security \
+		--format='get(networkInterfaces[0].accessConfigs[0].natIP)'
+
 .PHONY: teardown
 teardown:
 	gcloud compute instances delete kubernetes-security --zone europe-west3-a --quiet
