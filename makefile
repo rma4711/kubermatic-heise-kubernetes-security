@@ -36,7 +36,8 @@ verify:
 .PHONY: get-external-ip
 get-external-ip:
 	gcloud compute instances describe kubernetes-security \
-		--format='get(networkInterfaces[0].accessConfigs[0].natIP)'
+		--format='get(networkInterfaces[0].accessConfigs[0].natIP)' \
+		--zone europe-west3-a
 
 .PHONY: teardown
 teardown:

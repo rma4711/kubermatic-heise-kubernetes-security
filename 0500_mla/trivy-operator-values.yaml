@@ -1,0 +1,10 @@
+serviceMonitor:
+  enabled: true
+  labels: { release":"prometheus" }
+trivy:
+  ignoreUnfixed: true
+
+    # --set service.type=NodePort \
+    # --set service.headless=false \
+    # --set service.nodePort=30111 \
+    # --set serviceMonitor.namespace=mla

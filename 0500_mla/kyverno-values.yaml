@@ -1,0 +1,8 @@
+admissionController:
+  serviceMonitor:
+    enabled: true
+    additionalLabels: { release":"prometheus" }
+    
+    
+    
+    # --set admissionController.serviceMonitor.namespace=mla

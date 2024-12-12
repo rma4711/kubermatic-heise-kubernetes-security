@@ -1,0 +1,12 @@
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: true
+    serviceMonitorSelector: {}
+    serviceMonitorNamespaceSelector: {}
+  service:
+    type: NodePort
+grafana:
+  enabled: false
+alertmanager:
+  service:
+    type: NodePort
