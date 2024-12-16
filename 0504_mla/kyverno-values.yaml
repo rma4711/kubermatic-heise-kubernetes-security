@@ -1,4 +1,6 @@
 admissionController:
   serviceMonitor:
     enabled: true
-    # additionalLabels: { release": "prometheus" }
+metricsConfig:
+  namespaces:
+    include: ["default"]
