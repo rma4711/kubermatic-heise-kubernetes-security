@@ -4,17 +4,12 @@
 
 ```bash
 # inspect the auditing policy
-vi 13_auditing/my-policy.yaml
+vi 0501_auditing/my-policy.yaml
 
 # copy the policy file into the apiserver mount
-cp 13_auditing/my-policy.yaml /root/apiserver/
-```
+cp 0501_auditing/my-policy.yaml /root/apiserver/
 
-### Enable Auditing in the API Server
-
-Edit the static manifest for the API Server
-
-```bash
+# Enable Auditing in the API Server
 vi /etc/kubernetes/manifests/kube-apiserver.yaml
 ```
 
@@ -28,8 +23,6 @@ spec:
         - --audit-log-maxage=10 # <= add this line
         - --audit-log-maxsize=100 # <= add this line
 ```
-
-Note that the kubelet is restarting the apiserver due to we changed the pod in the static pod manifests. This will take ~ 2 minutes. The Kubernetes Cluster is not reachable until the apiserver has been restarted. You can check the progress via `crictl ps | grep kube-apiserver`.
 
 ## Verify Auditing
 

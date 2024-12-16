@@ -8,5 +8,6 @@ prometheus:
 grafana:
   enabled: false
 alertmanager:
-  service:
-    type: NodePort
+  enabled: false
+  # service:
+  #   type: NodePort

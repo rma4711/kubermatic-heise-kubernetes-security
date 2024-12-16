@@ -1,9 +1,18 @@
 # Runtime Security with Falco
 
-## Verify installation
+## Installation
 
 ```bash
-systemctl status falco
+# install
+curl -fsSL https://falco.org/repo/falcosecurity-packages.asc | gpg --dearmor -o /usr/share/keyrings/falco-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/falco-archive-keyring.gpg] https://download.falco.org/packages/deb stable main" | tee -a /etc/apt/sources.list.d/falcosecurity.list
+apt-get update -y
+DEBIAN_FRONTEND=noninteractive apt-get install -y dkms make linux-headers-$(uname -r)
+DEBIAN_FRONTEND=noninteractive apt-get install -y clang llvm
+DEBIAN_FRONTEND=noninteractive FALCO_FRONTEND=noninteractive apt-get install --yes falco=0.38.0
+
+# verify
+systemctl status falco-modern-bpf.service
 ```
 
 ## Configure Falco
@@ -26,9 +35,34 @@ file_output:
 ## Verify logging
 
 ```bash
+# verify no logs
+cat /var/log/falco.log
+
 # exec into the pod (and exit afterwards)
 kubectl exec -it my-suboptimal-pod -- bash
 
 # verify that a line like this got logged
-cat /var/log/falco.log | grep 'Notice A shell was spawned in a container with an attached terminal'
+cat /var/log/falco.log 
+```
+
+## Configure Rules
+
+```bash
+# check falco dir
+ls -alh /etc/falco
+
+# find rule
+vi /etc/falco/falco_rules.yaml
+
+# adapt rule
+vi /etc/falco/falco_rules.local.yaml 
+
+# show supported fields => https://falco.org/docs/reference/rules/supported-fields/
+# => change prio from NOTICE to WARNING
+
+# exec into the pod (and exit afterwards)
+kubectl exec -it my-suboptimal-pod -- bash
+
+# verify that a line like this got logged
+cat /var/log/falco.log 
 ```
