@@ -99,6 +99,10 @@ helm --namespace kyverno --create-namespace --atomic --debug \
   kyverno kyverno/kyverno --version 3.3.4 \
   --values kyverno-values.yaml
 
+# Import Kyverno Dashboard
+# https://github.com/kyverno/kyverno/blob/main/charts/kyverno/charts/grafana/dashboard/kyverno-dashboard.json
+
+
 kubectl apply -f disallow-latest-tag.yaml
 
 # kubectl get policyreports
@@ -109,8 +113,6 @@ kubectl apply -f ../pod.yaml
 
 # promql => kyverno_admission_requests_total{"resource_namespace"="default"}
 
-# Import Kyverno Dashboard
-# https://github.com/kyverno/kyverno/blob/main/charts/kyverno/charts/grafana/dashboard/kyverno-dashboard.json
 ```
 
 ## Falco
@@ -146,7 +148,6 @@ kubectl exec -it some-pod -- bash
 # => check dashboard
 ```
 
-
 ## Debug ServiceMonitor Issues
 
 ```bash
@@ -159,7 +160,6 @@ kubectl exec -it some-pod -- bash
 ## Audit logs
 
 ## kube-bench
-
 
 <!-- TODO -->
 
